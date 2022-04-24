@@ -28,6 +28,7 @@ constructor(props){
         Tags: '',
         Creatorname: '',
     };
+    this.state={value:''};
 }
 
 handleInputChange = e =>{
@@ -166,7 +167,7 @@ axios
                     </div>
                     <div class="col-md-6">
                         <label for="validationServer02" class="form-label">Creator name</label>
-                        <input type="text" name='Creatorname' class="form-control " id="validationServer02"   onChange={this.handleInputChange} required />
+                        <input type="text" name='Creatorname' class="form-control " id="validationServer02"    pattern="[a-z][A-Z]*" onChange={this.handleInputChange} required />
                         <div class="valid-feedback">
                             Looks good!
                         </div>
