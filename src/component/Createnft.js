@@ -2,7 +2,8 @@ import React from 'react';
 import  Tabs  from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab';
 import UploadNFT from './UploadNFT';
-
+import Uploadmusic from './Uploadmusic';
+import './UploadNFT.css';
 
 
 
@@ -10,7 +11,7 @@ export default function Createnft() {
     return (
         <div>
 
-     <div className="bg-black p-4">
+     <div id="createnft"className=" p-4 ">
       <p style={{ color: "yellow", fontSize: "33px" }}>
         You have sucessfully connected to Metamask Wallet.
         <h2>Complete the steps below to create NFT</h2>
@@ -45,7 +46,7 @@ export default function Createnft() {
     <UploadNFT />
   </Tab>
   <Tab eventKey="Music" title="Music">
-    <p>hii</p>
+    <Uploadmusic />
   </Tab>
  
 </Tabs>

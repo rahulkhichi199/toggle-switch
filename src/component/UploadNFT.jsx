@@ -8,18 +8,12 @@ const http = require('http');
 export class UploadNFT extends Component {
 
 
-    // constructor()
-    // {   
-    //     super();
-    //     this.state={value:''};
-    // }
-    // charallow(e)
-    // {
-    //     this.setState({inputtxt:e.target.value.replace(/[^a-zA-Z]/ig,'')})
-    // }
+    
+   
 
 constructor(props){
     super(props);
+  
     this.state ={
         NFTname: '',
         Title: '',
@@ -27,19 +21,39 @@ constructor(props){
         AssetID: '',
         Tags: '',
         Creatorname: '',
+        Description: '',
     };
-    this.state={value:''};
+
+    
+
 }
 
+charallow(e)
+    {
+        this.setState({inputtxt:e.target.value.replace(/[^a-zA-Z]/ig,'')})
+    }
+
+
+ 
+
 handleInputChange = e =>{
+
+    
     this.setState({
         [e.target.name]:e.target.value,
     });
-};
+  };
+
+
+
+
+
 
 handleSubmit = e =>{
     e.preventDefault();
-    const { NFTname, Title, Amount, AssetID, Tags, Creatorname} = this.state;
+
+
+    const { NFTname, Title, Amount, AssetID, Tags, Creatorname, Description} = this.state;
     const NFT = {
         NFTname,
         Title,
@@ -47,6 +61,7 @@ handleSubmit = e =>{
         AssetID,
         Tags,
         Creatorname,
+        Description,
     };
 axios
 .post('http://localhost:5000/createnft',NFT)
@@ -73,29 +88,11 @@ axios
         }
         reader.readAsDataURL(e.target.files[0])
     };
+
+
+
     render() {
         const { profileImg } = this.state
-
-        // form submit steps
-        // const submitHandler = (event) => {
-        //     event.preventDefault();
-        //     // const image = event.target.image - upload.value;
-        //     const NFTname = event.target.NFTname.value;
-        //     const Title = event.target.Title.value;
-        //     const Amount = event.target.Amount.value;
-        //     axios.post("http://localhost:5000/nft", {
-        //         NFTname,
-        //         Title,
-        //         Amount
-        //     })
-        //         .then(response => {
-        //             console.log(response);
-        //         })
-        //         .catch((error) => {
-        //             console.log(error);
-        //         });
-        // };
-
 
         return (
 
@@ -103,7 +100,7 @@ axios
 
             <div>
 
-                <form class="row g-3 needs-validation"  onSubmit={this.handleSubmit} checkValidity>
+                <form class="row g-3 "  onSubmit={this.handleSubmit} >
 
                     <div className="page" id='page'>
                         <div className="container" id='container'>
@@ -132,9 +129,9 @@ axios
 
                     <div class="col-md-4">
                         <label for="validationServer01" class="form-label">NFT name</label>
-                        <input type="text" name='NFTname' class="form-control " id="validationServer01" onChange={this.handleInputChange} required />
+                        <input type="text" name='NFTname'  class="form-control " id="validationServer01" onChange={this.handleInputChange} required />
                         <div class="valid-feedback">
-                            Looks good!
+                           Nft name                       
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -167,7 +164,14 @@ axios
                     </div>
                     <div class="col-md-6">
                         <label for="validationServer02" class="form-label">Creator name</label>
-                        <input type="text" name='Creatorname' class="form-control " id="validationServer02"    pattern="[a-z][A-Z]*" onChange={this.handleInputChange} required />
+                        <input type="text" name='Creatorname' class="form-control " id="validationServer02"   value={this.state.inputtxt}  onInput={this.charallow.bind(this)}  OnChange={this.handleInputChange} required />
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="validationServer02" class="form-label">Description</label>
+                        <textarea  name='Description' class="form-control " id="validationServer02"      OnChange={this.handleInputChange} required />
                         <div class="valid-feedback">
                             Looks good!
                         </div>
