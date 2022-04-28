@@ -1,31 +1,34 @@
 import React, {useState, useEffect} from 'react';
-import {singleFileUpload, multipleFilesUpload} from '../data/api';
+// import {singleFileUpload, multipleFilesUpload} from '../data/api';
 // import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
 // import 'react-circular-progressbar/dist/styles.css';
-
+import {multipleFilesUpload} from '../data/api';
 
 const FileUploadScreen = (props) => {
-    const [singleFile, setSingleFile] = useState('');
+    // const [singleFile, setSingleFile] = useState('');
     const [multipleFiles, setMultipleFiles] = useState('');
     const [title, setTitle] =  useState('');
-    const [singleProgress, setSingleProgress] = useState(0);
+    const [NFTname, setNFTname] =  useState('');
+    const [AssetID, setAssetID] =  useState('');
+    const [Description, setDescription] =  useState('');
+    // const [singleProgress, setSingleProgress] = useState(0);
     const [multipleProgress, setMultipleProgress] = useState(0);
 
-    const SingleFileChange = (e) => {
-        setSingleFile(e.target.files[0]);
-        setSingleProgress(0);
-    }
+    // const SingleFileChange = (e) => {
+    //     setSingleFile(e.target.files[0]);
+    //     setSingleProgress(0);
+    // }
     const MultipleFileChange = (e) => {
         setMultipleFiles(e.target.files);
         setMultipleProgress(0);
     }
-    const singleFileOptions = {
-        onUploadProgress: (progressEvent) => {
-            const {loaded, total} = progressEvent;
-            const percentage = Math.floor(((loaded / 1000) * 100) / (total / 1000));
-            setSingleProgress(percentage);
-        }
-    }
+    // const singleFileOptions = {
+    //     onUploadProgress: (progressEvent) => {
+    //         const {loaded, total} = progressEvent;
+    //         const percentage = Math.floor(((loaded / 1000) * 100) / (total / 1000));
+    //         setSingleProgress(percentage);
+    //     }
+    // }
     const mulitpleFileOptions = {
         onUploadProgress: (progressEvent) => {
             const {loaded, total} = progressEvent;
@@ -33,15 +36,19 @@ const FileUploadScreen = (props) => {
             setMultipleProgress(percentage);
         }
     }
-    const uploadSingleFile = async () => {
-        const formData = new FormData();
-        formData.append('file', singleFile);
-        await singleFileUpload(formData, singleFileOptions);
-        props.getsingle();
-    }
+    // const uploadSingleFile = async () => {
+    //     const formData = new FormData();
+    //     formData.append('file', singleFile);
+    //     await singleFileUpload(formData, singleFileOptions);
+    //     props.getsingle();
+    // }
     const UploadMultipleFiles = async () => {
         const formData = new FormData();
         formData.append('title', title);
+        formData.append('NFTname', NFTname);
+        formData.append('AssetID', AssetID);
+        formData.append('Description', Description);
+        
         for (let i = 0; i < multipleFiles.length; i++) {
             formData.append('files', multipleFiles[i]);                      
         }
@@ -50,7 +57,7 @@ const FileUploadScreen = (props) => {
     }
     return (
         <div className="row mt-3">
-            <div className="col-6">
+            {/* <div className="col-6">
                 <div className="form-group">
                     <label>Select Single File</label>
                     <input type="file" className="form-control" onChange={(e) => SingleFileChange(e)} />
@@ -58,7 +65,7 @@ const FileUploadScreen = (props) => {
                 <div className="row">
                     <div className="col-10">
                         <button type="button" className="btn btn-danger" onClick={() => uploadSingleFile()} >Upload</button>
-                    </div>
+                    </div> */}
                     {/* <div className="col-2">
                         <CircularProgressbar
                             value={singleProgress}
@@ -75,13 +82,25 @@ const FileUploadScreen = (props) => {
                             })}
                         />
                     </div> */}
-                </div>
-            </div>
-            <div className="col-6">
+                {/* </div>
+            </div> */}
+            <div className="">
                    <div className="row">
                        <div className="col-6">
                             <label >Title</label>
                             <input type="text" onChange={(e) => setTitle(e.target.value) } placeholder="enter title for your gallery" className="form-control"/>
+                       </div>
+                       <div className="col-6">
+                            <label >NFTname</label>
+                            <input type="text" onChange={(e) => setNFTname(e.target.value) } placeholder="enter title for your gallery" className="form-control"/>
+                       </div>
+                       <div className="col-6">
+                            <label >AssetID</label>
+                            <input type="number" onChange={(e) => setAssetID(e.target.value) } placeholder="enter title for your gallery" className="form-control"/>
+                       </div>
+                       <div className="col-6">
+                            <label >Description</label>
+                            <input type="text" onChange={(e) => setDescription(e.target.value) } placeholder="enter title for your gallery" className="form-control"/>
                        </div>
                        <div className="col-6">
                         <div className="form-group">

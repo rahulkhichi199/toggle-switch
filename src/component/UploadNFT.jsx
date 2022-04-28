@@ -1,20 +1,21 @@
 import React, {useState, useEffect} from 'react';
 // import './App.css';
 import FileUploadScreen from '../screens/FileUploadScreen';
-import {getSingleFiles, getMultipleFiles} from '../data/api';
+// import {getSingleFiles, getMultipleFiles} from '../data/api';
+import {getMultipleFiles} from '../data/api';
 
 function UploadNFT() {
-  const [singleFiles, setSingleFiles] = useState([]);
+  // const [singleFiles, setSingleFiles] = useState([]);
   const [multipleFiles, setMultipleFiles] = useState([]);
 
-  const getSingleFileslist = async () => {
-    try {
-        const fileslist = await getSingleFiles();
-        setSingleFiles(fileslist);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // const getSingleFileslist = async () => {
+  //   try {
+  //       const fileslist = await getSingleFiles();
+  //       setSingleFiles(fileslist);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   const getMultipleFilesList = async () => {
     try {
         const fileslist = await getMultipleFiles();
@@ -25,18 +26,19 @@ function UploadNFT() {
     }
   }
   useEffect(() => {
-    getSingleFileslist();
+    // getSingleFileslist();
     getMultipleFilesList();
   }, []);
   return (
     <>
         <div className="container">
-          <h3 className="text-danger font-weight-bolder border-bottom text-center">Single & Multiple File Upload Using MERN Stack </h3>
-          <FileUploadScreen getsingle={() => getSingleFileslist()} getMultiple={() => getMultipleFilesList()}/>
+          
+          <FileUploadScreen  getMultiple={() => getMultipleFilesList()}/>
+          {/* getsingle={() => getSingleFileslist()} */}
        </div> 
        <div className="container-fluid mt-5">
          <div className="row">
-           <div className="col-6">
+           {/* <div className="col-6">
              <h4 className="text-success font-weight-bold">Single Files List</h4>
              <div className="row">
                 {singleFiles.map((file, index) => 
@@ -46,8 +48,8 @@ function UploadNFT() {
                       </div>
                   </div>
                 )}
-             </div>
-           </div>
+             </div> */}
+           {/* </div> */}
            <div className="col-6">
              <h4 className="text-success font-weight-bold">Multiple Files List</h4>
              {multipleFiles.map((element, index) =>
