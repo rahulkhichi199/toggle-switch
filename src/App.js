@@ -40,7 +40,7 @@ function App(props) {
       />
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/createnft" element={<Createnft />} />
         <Route path="/Marketplace" element={<Marketplace />} />
       </Routes>

@@ -1,6 +1,10 @@
 import React from "react";
 import "./dashboard.css";
-import { Nav } from "react-bootstrap";
+// import { Nav } from "react-bootstrap";
+import  Tabs  from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab';
+import MyNFTMarketPlace from "./MyNFTMarketPlace";
+import MyNFTs from "./MyNFTs";
 
 export default function Dashboard() {
   return (
@@ -44,17 +48,50 @@ export default function Dashboard() {
 
 
     <div>
-    <Nav variant="tabs" id="navLinkDash">
+
+
+    <Tabs
+  defaultActiveKey="home"
+  transition={true}
+  id="noanim-tab-example"
+  className="mb-3"
+>
+  <Tab eventKey="MyNFTs" title="MyNFTs">
+    <MyNFTs />
+  </Tab>
+  <Tab eventKey="MyNFTMarketPlace" title="MyNFTMarketPlace">
+    <MyNFTMarketPlace />
+  </Tab>
+ 
+</Tabs>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {/* <Nav variant="tabs" id="navLinkDash">
   <Nav.Item>
-    <Nav.Link eventKey="link-1" className="navDash">My NFTs</Nav.Link>
-  </Nav.Item>
-  <Nav.Item>
-    <Nav.Link eventKey="link-2" className="navDash">
-    MyNFTs@MarketPlace&nbsp;
-            
+    <Nav.Link eventKey="link-1" href="<MyNFTs/>"  className="navDash">My NFTs
     </Nav.Link>
+   
+
   </Nav.Item>
-</Nav>
+  <Nav.Item>
+    <Nav.Link eventKey="link-2" href="/" className="navDash">
+    MyNFTs@MarketPlace&nbsp;
+    </Nav.Link>
+   
+
+  </Nav.Item>
+</Nav> */}
     </div>
     </>
   );

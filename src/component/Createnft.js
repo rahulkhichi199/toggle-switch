@@ -11,7 +11,7 @@ export default function Createnft() {
     return (
         <div>
 
-     <div id="createnft"className=" p-4 ">
+     <div id="createnft" className=" p-4 ">
       <p style={{ color: "yellow", fontSize: "33px" }}>
         You have sucessfully connected to Metamask Wallet.
         <h2>Complete the steps below to create NFT</h2>
