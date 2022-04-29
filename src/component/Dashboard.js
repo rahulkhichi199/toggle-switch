@@ -29,7 +29,10 @@ export default function Dashboard() {
 
                 <div class="card-body">
 
-                    <p className="paragp">There are no recently created NFT available</p>
+                    {/* <p className="paragp">There are no recently created NFT available</p> */}
+
+
+                    <MyNFTs/>
 
                 </div>
 

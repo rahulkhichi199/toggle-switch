@@ -18,11 +18,17 @@ const apiUrl = 'http://localhost:8080/api/';
 //     }
 // }
 
+
+
+
+
 export const multipleFilesUpload = async (data, options) => {
     try {
         await axios.post(apiUrl + 'multipleFiles', data, options);
+        
     } catch (error) {
         throw error;
+        
     }
 }
 export const getMultipleFiles = async () => {

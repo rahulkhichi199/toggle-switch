@@ -19,9 +19,9 @@ export default function Createnft() {
     
       
 
-      <div class="accordion" id="myAccordion">
+      <div class="accordion col-12" id="myAccordion">
 
-        <div class="accordion-item">
+        <div class="accordion-item" id="myAccordion">
 
             <h2 class="accordion-header" id="headingOne">
 
@@ -31,7 +31,7 @@ export default function Createnft() {
 
             <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
 
-                <div class="card-body">
+                <div class="card-body" >
 
   
 
@@ -40,7 +40,7 @@ export default function Createnft() {
   defaultActiveKey="home"
   transition={true}
   id="noanim-tab-example"
-  className="mb-3"
+  className="m-3"
 >
   <Tab eventKey="Art" title="Art">
     <UploadNFT />

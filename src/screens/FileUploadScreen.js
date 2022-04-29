@@ -9,8 +9,11 @@ const FileUploadScreen = (props) => {
     const [multipleFiles, setMultipleFiles] = useState('');
     const [title, setTitle] =  useState('');
     const [NFTname, setNFTname] =  useState('');
+    const [Tags, setTags] =  useState('');
     const [AssetID, setAssetID] =  useState('');
+    const [Amount, setAmount] =  useState('');
     const [Description, setDescription] =  useState('');
+    const [CreatorName, setCreatorName] =  useState('');
     // const [singleProgress, setSingleProgress] = useState(0);
     const [multipleProgress, setMultipleProgress] = useState(0);
 
@@ -46,8 +49,12 @@ const FileUploadScreen = (props) => {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('NFTname', NFTname);
+        formData.append('Tags', Tags);
         formData.append('AssetID', AssetID);
+        formData.append('Amount', Amount);
         formData.append('Description', Description);
+        formData.append('CreatorName', CreatorName);
+
         
         for (let i = 0; i < multipleFiles.length; i++) {
             formData.append('files', multipleFiles[i]);                      
@@ -84,33 +91,50 @@ const FileUploadScreen = (props) => {
                     </div> */}
                 {/* </div>
             </div> */}
-            <div className="">
-                   <div className="row">
-                       <div className="col-6">
+            <div className="p-0">
+                   <div className="row p-0">
+                   <div className="col-5 m-2">
+                        <div className="form-group">
+                            <label>Select Multiple Files</label>
+                            <input type="file" onChange={(e) => MultipleFileChange(e)} className="form-control" single />
+                        </div>
+                       </div>
+                       <div className="col-5 m-2">
                             <label >Title</label>
                             <input type="text" onChange={(e) => setTitle(e.target.value) } placeholder="enter title for your gallery" className="form-control"/>
                        </div>
-                       <div className="col-6">
+                       <div className="col-5 m-2">
                             <label >NFTname</label>
-                            <input type="text" onChange={(e) => setNFTname(e.target.value) } placeholder="enter title for your gallery" className="form-control"/>
+                            <input type="text" onChange={(e) => setNFTname(e.target.value) } placeholder="enter NFT name for your gallery" className="form-control"/>
                        </div>
-                       <div className="col-6">
+
+                       <div className="col-5 m-2">
+                            <label >Tags</label>
+                            <input type="text" onChange={(e) => setTags(e.target.value) } placeholder="Tags" className="form-control"/>
+                       </div>
+
+                       <div className="col-5 m-2">
                             <label >AssetID</label>
-                            <input type="number" onChange={(e) => setAssetID(e.target.value) } placeholder="enter title for your gallery" className="form-control"/>
+                            <input type="number" onChange={(e) => setAssetID(e.target.value) } placeholder="asset id" className="form-control"/>
                        </div>
-                       <div className="col-6">
+                       <div className="col-5 m-2">
+                            <label >Amount</label>
+                            <input type="number" onChange={(e) => setAmount(e.target.value) } placeholder="enter Base price" className="form-control"/>
+                       </div>
+                      
+                       <div className="col-5 m-2">
+                            <label >CreatorName</label>
+                            <input type="text" onChange={(e) => setCreatorName(e.target.value) } placeholder="enter CreatorName for your gallery" className="form-control"/>
+                       </div>
+
+                       
+                   </div> 
+                   <div className="col-10 m-2">
                             <label >Description</label>
-                            <input type="text" onChange={(e) => setDescription(e.target.value) } placeholder="enter title for your gallery" className="form-control"/>
-                       </div>
-                       <div className="col-6">
-                        <div className="form-group">
-                            <label>Select Multiple Files</label>
-                            <input type="file" onChange={(e) => MultipleFileChange(e)} className="form-control" multiple />
-                        </div>
-                       </div>
-                   </div>                   
+                            <textarea onChange={(e) => setDescription(e.target.value) } placeholder="enter Description for your gallery" className="form-control"></textarea>
+                       </div>                  
                     <div className="row">
-                        <div className="col-10">
+                        <div className="col-10 m-2">
                             <button type="button" onClick={() => UploadMultipleFiles()}  className="btn btn-danger">Upload</button>
                         </div>
                         {/* <div className="col-2">
