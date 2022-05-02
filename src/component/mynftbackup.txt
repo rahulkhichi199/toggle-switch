@@ -1,0 +1,144 @@
+import React, { useState, useEffect } from 'react';
+
+// import FileUploadScreen from '../screens/FileUploadScreen';
+
+import { getMultipleFiles } from '../data/api';
+
+function MyNFTs() {
+
+  const [multipleFiles, setMultipleFiles] = useState([]);
+
+  const getMultipleFilesList = async () => {
+    try {
+      const fileslist = await getMultipleFiles();
+      setMultipleFiles(fileslist);
+      console.log(multipleFiles);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+
+    getMultipleFilesList();
+  }, []);
+  return (
+    <>
+
+      <div className="container-fluid col-12 mt-5">
+        <div className="col-12">
+          <div className="col-12"  >
+            <h4 className="text-success font-weight-bold">Filter by<span className='fas fa-sliders-h'></span></h4>
+
+
+            <div className='row '>
+
+
+              <nav className='navbar navbar-expand-lg navbar-light bg-light border-top p-3'>
+                <form className='form-inline my-2 my-lg-0' style={{ "display": "flex", "margin": "auto" }}>
+                  <input
+                    className='form-control mr-sm-2 '
+                    type='search'
+                    placeholder='Search'
+                    aria-label='Search'
+                    name='search'
+                  //value={text}
+                  //onChange={handleSearch}
+                  />
+                  <button
+                    className='btn btn-outline-success my-2 my-sm-0'
+                    type='submit'
+                    disabled={true}
+                  >
+                    Search
+                  </button>
+                </form>
+              </nav>
+
+              <div className='border-top border-bottom bg-light p-4'>
+                {/* {categories &&
+							categories.map(c => ( */}
+                <div className='form-check'>
+                  {/* //key={c._id}// */}
+                  <input
+                    className='form-check-input'
+                    type='checkbox'
+                    name='category'
+                    //value={c._id}
+                    id='flexCheckChecked'
+                  // checked={categoryIds.includes(c._id)}
+                  // onChange={handleCategory}
+                  />
+                  <label
+                    className='form-check-label'
+                    htmlFor='flexCheckChecked'
+                  >
+                    {/* {c.category} */}
+                    ART
+                  </label>
+                </div>
+                {/* ))} */}
+              </div>
+
+            </div>
+
+            <div className='col-md-9'>
+
+              <div className='row'>
+
+                {/* {products &&
+
+              products.map(p => ( */}
+
+                {/* <Card key={p._id} product={p} homePage={true} />
+
+              ))} */}
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <div className='row col-12 d-flex mt-5' >
+            {multipleFiles.map((element, index) =>
+              <div className='col-3 ' key={element._id}>
+
+                <div className="row col-12">
+                  {element.files.map((file, index) =>
+                    <div className="col-12" >
+                      <div className="card mb-2 border-0 p-0" >
+                        <img src={`http://localhost:8080/${file.filePath}`} height="100%" className="card-img-top img-responsive" alt="img" />
+                        <div >
+                          <h6 className="text-danger font-weight-bold">{element.title}</h6>
+                          <h6 className="text-danger font-weight-bold">{element.NFTname}</h6>
+                          <h6 className="text-danger font-weight-bold ">{element.Amount}</h6>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </>
+  );
+}
+
+export default MyNFTs;

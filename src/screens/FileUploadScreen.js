@@ -1,11 +1,8 @@
 import React, {useState, useEffect} from 'react';
-// import {singleFileUpload, multipleFilesUpload} from '../data/api';
-// import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
-// import 'react-circular-progressbar/dist/styles.css';
 import {multipleFilesUpload} from '../data/api';
 
 const FileUploadScreen = (props) => {
-    // const [singleFile, setSingleFile] = useState('');
+    
     const [multipleFiles, setMultipleFiles] = useState('');
     const [title, setTitle] =  useState('');
     const [NFTname, setNFTname] =  useState('');
@@ -14,24 +11,68 @@ const FileUploadScreen = (props) => {
     const [Amount, setAmount] =  useState('');
     const [Description, setDescription] =  useState('');
     const [CreatorName, setCreatorName] =  useState('');
-    // const [singleProgress, setSingleProgress] = useState(0);
+    
     const [multipleProgress, setMultipleProgress] = useState(0);
+    
+   
+    
 
-    // const SingleFileChange = (e) => {
-    //     setSingleFile(e.target.files[0]);
-    //     setSingleProgress(0);
-    // }
+
+
+const [userInfo, setuserInfo] = useState({
+    file:[],
+    filepreview:null,
+   });
+
+
+const handleInputChange = (event) => {
+    setuserInfo({
+      ...userInfo,
+      file:event.target.files[0],
+      filepreview:URL.createObjectURL(event.target.files[0]),
+    });
+
+  }
+
+
+
+const [isSucces, setSuccess] = useState(null);
+
+//   const submit = async () =>{
+//     const formdata = new FormData(); 
+//     formdata.append('avatar', userInfo.file);
+
+//     axios.post("http://localhost:8080/imageupload", formdata,{   
+//             headers: { "Content-Type": "multipart/form-data" } 
+//     })
+//     .then(res => { // then print response status
+//       console.warn(res);
+//       if(res.data.success === 1){
+//         setSuccess("Image upload successfully");
+//       }
+
+//     })
+//   }
+
+
+
+
+    
+    
+    
     const MultipleFileChange = (e) => {
         setMultipleFiles(e.target.files);
         setMultipleProgress(0);
+        
+
+  setuserInfo({
+      ...userInfo,
+      file:e.target.files[0],
+      filepreview:URL.createObjectURL(e.target.files[0]),
+    });
+
     }
-    // const singleFileOptions = {
-    //     onUploadProgress: (progressEvent) => {
-    //         const {loaded, total} = progressEvent;
-    //         const percentage = Math.floor(((loaded / 1000) * 100) / (total / 1000));
-    //         setSingleProgress(percentage);
-    //     }
-    // }
+  
     const mulitpleFileOptions = {
         onUploadProgress: (progressEvent) => {
             const {loaded, total} = progressEvent;
@@ -39,12 +80,7 @@ const FileUploadScreen = (props) => {
             setMultipleProgress(percentage);
         }
     }
-    // const uploadSingleFile = async () => {
-    //     const formData = new FormData();
-    //     formData.append('file', singleFile);
-    //     await singleFileUpload(formData, singleFileOptions);
-    //     props.getsingle();
-    // }
+  
     const UploadMultipleFiles = async () => {
         const formData = new FormData();
         formData.append('title', title);
@@ -62,43 +98,47 @@ const FileUploadScreen = (props) => {
         await multipleFilesUpload(formData, mulitpleFileOptions);
         props.getMultiple();
     }
+
+
+    
+
+    
+
     return (
         <div className="row mt-3">
-            {/* <div className="col-6">
-                <div className="form-group">
-                    <label>Select Single File</label>
-                    <input type="file" className="form-control" onChange={(e) => SingleFileChange(e)} />
-                </div>
-                <div className="row">
-                    <div className="col-10">
-                        <button type="button" className="btn btn-danger" onClick={() => uploadSingleFile()} >Upload</button>
-                    </div> */}
-                    {/* <div className="col-2">
-                        <CircularProgressbar
-                            value={singleProgress}
-                            text={`${singleProgress}%`}
-                            styles={buildStyles({
-                                rotation: 0.25,
-                                strokeLinecap: 'butt',
-                                textSize: '16px',
-                                pathTransitionDuration: 0.5,
-                                pathColor: `rgba(255, 136, 136, ${singleProgress / 100})`,
-                                textColor: '#f88',
-                                trailColor: '#d6d6d6',
-                                backgroundColor: '#3e98c7',
-                            })}
-                        />
-                    </div> */}
-                {/* </div>
-            </div> */}
+
+  {/* previw      */}
+
+  {userInfo.filepreview !== null ? 
+        <img className="previewimg" style={{"width":"25%"}} src={userInfo.filepreview} alt="UploadImage" />
+      : null}
+
+{/* previw      */}
+
             <div className="p-0">
                    <div className="row p-0">
-                   <div className="col-5 m-2">
+
+
+
+	 <div className="formdesign">
+      {isSucces !== null ? <h4> {isSucces} </h4> :null }
+        <div className="form-group">
+          <label className="text-white">Select Image :</label>
+          <input type="file" className="form-control" name="upload_file"  onChange={(e) =>  MultipleFileChange(e)} single />
+        </div>
+
+
+
+{/* images */}
+
+                   {/* <div className="col-5 m-2">
                         <div className="form-group">
                             <label>Select Multiple Files</label>
-                            <input type="file" onChange={(e) => MultipleFileChange(e)} className="form-control" single />
+                            <input type="file" accept="image/*" name="image-upload" id="input" onChange={(e) =>  MultipleFileChange(e)}  className="form-control" single />
                         </div>
-                       </div>
+                       </div> */}
+
+{/* images */}
                        <div className="col-5 m-2">
                             <label >Title</label>
                             <input type="text" onChange={(e) => setTitle(e.target.value) } placeholder="enter title for your gallery" className="form-control"/>
@@ -137,26 +177,14 @@ const FileUploadScreen = (props) => {
                         <div className="col-10 m-2">
                             <button type="button" onClick={() => UploadMultipleFiles()}  className="btn btn-danger">Upload</button>
                         </div>
-                        {/* <div className="col-2">
-                        <CircularProgressbar
-                            value={multipleProgress}
-                            text={`${multipleProgress}%`}
-                            styles={buildStyles({
-                                rotation: 0.25,
-                                strokeLinecap: 'butt',
-                                textSize: '16px',
-                                pathTransitionDuration: 0.5,
-                                pathColor: `rgba(255, 136, 136, ${multipleProgress / 100})`,
-                                textColor: '#f88',
-                                trailColor: '#d6d6d6',
-                                backgroundColor: '#3e98c7',
-                            })}
-                        />
-                    </div> */}
+                      
                     </div>
                 </div>
         </div>
+       
+        </div>
     );
+
 }
 
 export default FileUploadScreen;
