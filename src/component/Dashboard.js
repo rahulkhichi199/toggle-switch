@@ -1,6 +1,6 @@
 import React from "react";
 import "./dashboard.css";
-// import { Nav } from "react-bootstrap";
+import Gallery from './Gallery';
 import  Tabs  from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab';
 import MyNFTMarketPlace from "./MyNFTMarketPlace";
@@ -60,7 +60,7 @@ export default function Dashboard() {
   className="mb-3"
 >
   <Tab eventKey="MyNFTs" title="MyNFTs">
-    <MyNFTs />
+    <Gallery />
   </Tab>
   <Tab eventKey="MyNFTMarketPlace" title="MyNFTMarketPlace">
     <MyNFTMarketPlace />
