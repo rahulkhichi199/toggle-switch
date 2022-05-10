@@ -1,6 +1,26 @@
 
 import React, { useState, useEffect } from 'react';
 import './priceslider.css';
+import axios from 'axios';
+
+
+
+
+const apiUrl = 'http://localhost:8080/api/';
+
+
+
+
+
+
+
+export default function Filters(props) {
+
+
+
+    // const [price, setMinPrice] = useState('');
+
+    // const [prices, setMaxPrice] = useState('');
 
 
 
@@ -9,31 +29,14 @@ import './priceslider.css';
 
 
 
-export default function Filters() {
-
-
-
-    const [price, setPrice] = useState('150');
-
-
-    const lowest = async () => {
-
-        console.log('clicked');
-
-
-
-    }
 
 
 
 
-    const highest = async () => {
-
-        console.log('clicked');
 
 
 
-    }
+
 
 
 
@@ -60,6 +63,7 @@ export default function Filters() {
                                     placeholder='Search'
                                     aria-label='Search'
                                     name='search'
+                                    onChange={(event) => { props.onsearch(event) }}
 
                                 />
                                 <button
@@ -85,7 +89,7 @@ export default function Filters() {
 
                                         id='flexCheckChecked'
 
-                                    />
+                                        checked />
                                     <label
                                         className='form-check-label'
                                         htmlFor='flexCheckChecked'
@@ -128,24 +132,19 @@ export default function Filters() {
                             {/* tosel */}
 
 
-                            <div className='col-4'>
-                                <div className="slideBlock">
-                                    <div className="strack"></div>
-                                    <div className="slideProgress" style={{ "width": (price / 400 * 100) + "%" }}></div>
-                                    <input
-                                        onChange={(e) => setPrice(
-                                            e.target.value >= 0 && e.target.value <= 400 ? e.target.value : '100'
-                                        )}
-                                        value={price}
-                                        type="range"
-                                        name="range"
-                                        id="range"
-                                        min="0" max="400" />
-                                    <div className="Price">${price}</div>
-                                </div>
-                                <div className="imput_fields custom-imput-fields">
-                                    <label className="price_prod">Price <small>(US$)</small><br />
-                                        <input type="text" onChange={(e) => setPrice(e.target.value >= 100 && e.target.value <= 400 ? e.target.value : '100')} id="price_prod" name="price_prod" value={price} />
+                            <div className='col-4 mb-5'>
+
+                                <div className="imput_fields custom-imput-fields ">
+                                    {/*  */}
+                                    <label className="price_prod">MIN <br />
+                                        <input type="number" onChange={(event) => { props.ontype(event) }} id="price_prod" name="price_prod" />
+                                        {/* value={price} */}
+                                    </label>
+                                    {/*  */}
+                                    <span>To</span>
+                                    {/*  */}
+                                    <label className="price_prod">MAX <br />
+                                        <input type="number" id="price_prod" name="price_prod" />
                                     </label>
                                 </div>
 
@@ -157,12 +156,12 @@ export default function Filters() {
 
 
 
+                            {/* tosel */}
 
 
 
 
-
-                            <div className="dropdown mx-5 c0l-4">
+                            <div className="dropdown mx-5 mt-3 col-4">
 
                                 <strong>Sort by price : </strong>
                                 <button
@@ -182,12 +181,12 @@ export default function Filters() {
                                     aria-labelledby="dropdownMenuButton2"
                                 >
                                     <li>
-                                        <a className="dropdown-item" href="#" onClick={lowest}>
+                                        <a className="dropdown-item" href="#" onClick={(event) => { props.onsort(1) }}>
                                             low to high
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item" href="#" onClick={highest}>
+                                        <a className="dropdown-item" href="#" onClick={(event) => { props.onsort(-1) }}>
                                             high to low
                                         </a>
                                     </li>

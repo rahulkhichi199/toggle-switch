@@ -8,6 +8,8 @@ import Landing from "./component/Landing";
 import Createnft from "./component/Createnft";
 import Dashboard from "./component/Dashboard";
 import Marketplace from "./component/Marketplace";
+import DetailNFT from "./component/DetailNFT";
+import MyNFTs from './component/MyNFTs';
 import { useState } from "react";
 
 function App(props) {
@@ -42,6 +44,10 @@ function App(props) {
         <Route path="/" element={<Landing />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/createnft" element={<Createnft />} />
+        
+        <Route path="/MyNFTs" element={<MyNFTs />} />
+        <Route path="/DetailNFT/:id" element={<DetailNFT/>} />
+        
         <Route path="/Marketplace" element={<Marketplace />} />
       </Routes>
     </Router>

@@ -52,11 +52,7 @@ export default function Createnft() {
 </Tabs>
 
 
-{/* <h2 class="accordion-header p-4" id="headingOne">
 
-                <a  href="" data-bs-toggle="collapse" data-bs-target="#collapseOne"><i className="fa fa-chevron-down"></i> 2.Fill in the below details</a>                  
-
-            </h2> */}
 
 
                 </div>

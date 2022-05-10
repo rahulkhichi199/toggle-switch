@@ -4,9 +4,6 @@ const apiUrl = 'http://localhost:8080/api/';
 
 
 
-
-
-
 export const multipleFilesUpload = async (data, options) => {
     try {
         await axios.post(apiUrl + 'multipleFiles', data, options);
@@ -16,9 +13,20 @@ export const multipleFilesUpload = async (data, options) => {
         
     }
 }
-export const getMultipleFiles = async () => {
+export const getMultipleFiles = async (filter,sort) => {
     try{
-        const {data} = await axios.get(apiUrl + 'getMultipleFiles');
+        let apiurl = apiUrl + 'getMultipleFiles'
+        if(filter && !sort){
+            apiurl =  `${apiurl}?filter=${JSON.stringify(filter)}`
+        }
+        if(sort && !filter){
+            apiurl =  `${apiurl}?sort=${JSON.stringify(sort)}`
+        }
+        if(sort && filter){
+            apiurl =  `${apiurl}?sort=${JSON.stringify(sort)}&filter=${JSON.stringify(filter)}`
+        }
+        const {data} = await axios.get(apiurl);
+        console.log("getmultp",apiurl,data)
         return data;
     }catch(error){
         throw error;
@@ -29,26 +37,32 @@ export const getMultipleFiles = async () => {
 
 
 
+//getnfts
 
-
-// export const getMultipleFiles = async (req,res) => {
-//     try{
+export const getnfts = async (_id) => {
+    try {
+        let apiurl =`http://localhost:8080/api/DetailNFT/${_id}`
+        const {data} = await axios.get(`http://localhost:8080/api/DetailNFT/${_id}`);
+        console.log("getmultple",apiurl,data)
+        return data;
+    } catch (error) {
+        throw error;
         
-// let sort = req.query.sort;
-// let orderby = req.query.orderby;
+    }
+}
+//
 
 
-//  const sortObject = {}; // create a blank sort object
-//     sortObject['sort'] = orderby === 'asc' ? 1 : -1; // set the sorting 
 
 
-//         const {data} = await axios.get(apiUrl + 'getMultipleFiles')
-//         .sort(sortObject)
-//         return data;
-//     }catch(error){
-//         throw error;
-//     }
-// }
+
+
+
+
+
+
+
+
 
 
 

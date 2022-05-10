@@ -38,21 +38,7 @@ const handleInputChange = (event) => {
 
 const [isSucces, setSuccess] = useState(null);
 
-//   const submit = async () =>{
-//     const formdata = new FormData(); 
-//     formdata.append('avatar', userInfo.file);
 
-//     axios.post("http://localhost:8080/imageupload", formdata,{   
-//             headers: { "Content-Type": "multipart/form-data" } 
-//     })
-//     .then(res => { // then print response status
-//       console.warn(res);
-//       if(res.data.success === 1){
-//         setSuccess("Image upload successfully");
-//       }
-
-//     })
-//   }
 
 
 
@@ -131,12 +117,7 @@ const [isSucces, setSuccess] = useState(null);
 
 {/* images */}
 
-                   {/* <div className="col-5 m-2">
-                        <div className="form-group">
-                            <label>Select Multiple Files</label>
-                            <input type="file" accept="image/*" name="image-upload" id="input" onChange={(e) =>  MultipleFileChange(e)}  className="form-control" single />
-                        </div>
-                       </div> */}
+                   
 
 {/* images */}
                        <div className="col-5 m-2">
