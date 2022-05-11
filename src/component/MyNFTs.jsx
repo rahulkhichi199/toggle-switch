@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
-import axios from 'axios';
+
+import './Toggle.css'
 
 
-import { getMultipleFiles } from '../data/api';
-import { getMultiples } from '../data/api';
 
 
 
@@ -14,6 +12,10 @@ function MyNFTs(props) {
 
 
   console.log(props.table, ":::");
+
+  const clickhandler = () => {
+    console.log("checked");
+  }
 
 
 
@@ -46,9 +48,18 @@ function MyNFTs(props) {
 
                     <h5 class="card-title">Price : - {element.Amount}</h5>
 
-                    <a style={{ 'backgroundColor': "rgb(255, 35, 145)", 'border': 'none' }} href={`/DetailNFT/${element._id} `} class="btn btn-primary">view</a>
-
                   </div>
+                  <a style={{ 'backgroundColor': "rgb(255, 35, 145)", 'border': 'none' }} href={`/DetailNFT/${element._id} `} class="btn btn-primary">view</a>
+
+                  {/*  */}
+
+                  <h3>List on Marketplace</h3>
+                  <label class="switch"  >
+                    <input type="checkbox" onChange={clickhandler} />
+                    <span class="slider round"></span>
+
+                  </label>
+                  {/*  */}
 
                 </div>
 

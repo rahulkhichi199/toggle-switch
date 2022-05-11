@@ -1,7 +1,7 @@
 import React from "react";
 import "./dashboard.css";
 import Gallery from './Gallery';
-import  Tabs  from 'react-bootstrap/Tabs'
+import  Tabs  from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import MyNFTMarketPlace from "./MyNFTMarketPlace";
 import MyNFTs from "./MyNFTs";

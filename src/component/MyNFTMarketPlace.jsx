@@ -1,7 +1,11 @@
-import React from 'react'
+import React from 'react';
+import MyNFTSatMARKET from './MyNFTSatMARKET';
 
 export default function MyNFTMarketPlace() {
   return (
-    <div>MyNFTMarketPlace</div>
+    <div>
+
+      <MyNFTSatMARKET />
+    </div>
   )
 }
